@@ -1,19 +1,20 @@
 import { useState } from "react";
-import {useHistory} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
+import Navbar from "./Navabar";
 
 const Create = () => {
     // track input values with states
     const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
-    const [author, setAuthor] = useState("mario");
+    const [author, setAuthor] = useState("");
     const [isSending, setIsSending] = useState(false);
     
-    //redirect to a page with useHistory
-    const RouteHistory = useHistory();
+    //redirect to a page with useNavigate
+    const navigate = useNavigate();
 
     // handle submit form
     // post data with fetch method
-    const handleSunmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         const blog = {title, body, author}
         
@@ -25,14 +26,16 @@ const Create = () => {
             body: JSON.stringify(blog)
         }).then(() =>{
             setIsSending(false);
-            RouteHistory.push('/');
+            navigate('/home');
         })
     }
 
     return ( 
-        <div className="create">
-            <h1>Add new Blog</h1>
-            <form onSubmit={handleSunmit}>
+        <div >
+            <Navbar />
+            <div className="create">
+            <h3>Add new Blog</h3>
+            <form onSubmit={handleSubmit}>
                 <label htmlFor="">Blog Title:</label>
                 <input 
                     type="text"
@@ -50,13 +53,14 @@ const Create = () => {
                 <label>Blog Author:</label>
                 <select
                     value={author}
-                    onChange={(e) => setAuthor(e.target.value)}>
-                    <option value="mario">mario</option>
-                    <option value="yoshi">yoshi</option>
+                    onChange={(e) => setAuthor(localStorage.getItem("username"))}>
+                    <option value="anonymous">Anon</option>
+                    <option >{localStorage.getItem("username")}</option>
                 </select>
                 <button>Add new Blog</button>
                 {isSending && <div>Adding Blog...</div>}
             </form>
+        </div>
         </div>
         
      );

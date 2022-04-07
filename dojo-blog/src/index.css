@@ -100,3 +100,43 @@
   border-radius: 10px;
   cursor: pointer;
 }
+
+/* sign in and sign up form */
+.auth {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.auth label{
+  text-align: left;
+  display: block;
+  margin: 5px 0;
+}
+
+.auth input, .create textarea, .create select{
+  width: 100%;
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  display: block;
+}
+
+.login, .sign-up{
+  background-color: green;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  margin-top: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.new-user-btn{
+  margin-top: 10px;
+  color: none;
+}
+
+.user-exists, .no-match{
+  color: #f1356d;
+}
